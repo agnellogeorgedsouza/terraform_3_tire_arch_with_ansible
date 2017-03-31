@@ -1,6 +1,6 @@
 resource "aws_security_group" "allowPort80" { 
 
- vpc_id = "${aws_vpc.main.id}"
+ vpc_id = "${aws_vpc.main-ag.id}"
  name = "allowPort80"
  description = "allow port 80"
  egress { 
@@ -13,21 +13,15 @@ resource "aws_security_group" "allowPort80" {
   from_port = 80 
   to_port =  80 
   protocol = "tcp" 
-  cidr_blocks = ["123.201.40.36/32"] 
+  cidr_blocks = ["0.0.0.0/0"] 
  } 
 
- ingress { 
-  from_port = 80
-  to_port =  80
-  protocol = "tcp" 
-  cidr_blocks = ["10.0.0.0/16"] 
- }
  
 }
 
 resource "aws_security_group" "allowPort22" {
 
- vpc_id = "${aws_vpc.main.id}"
+ vpc_id = "${aws_vpc.main-ag.id}"
  name = "allowPort22"
  description = "allow port 22"
  
@@ -41,13 +35,13 @@ resource "aws_security_group" "allowPort22" {
 ingress { 
   from_port = 22 
   to_port =  22
-  protocol = -1 
-  cidr_blocks = ["123.201.40.36/32"] 
+  protocol = "tcp"
+  cidr_blocks = ["123.201.40.36/32","54.247.115.146/32"] 
  } 
  ingress { 
   from_port = 22 
   to_port =  22
-  protocol = -1 
+  protocol = "tcp" 
   cidr_blocks = ["10.0.0.0/16"] 
  } 
  tags { 
@@ -58,7 +52,7 @@ ingress {
 }
 
 resource "aws_security_group" "allowPort3306" {
- vpc_id = "${aws_vpc.main.id}"
+ vpc_id = "${aws_vpc.main-ag.id}"
  name = "allowPort3306"
  description = "allow port 3306 "
  
@@ -73,7 +67,7 @@ resource "aws_security_group" "allowPort3306" {
   from_port = 3306
   to_port =  3306
   protocol = "tcp"
-  cidr_blocks = ["123.201.40.36/32"]
+  cidr_blocks = ["123.201.40.36/32","54.247.115.146/32"]
  } 
  ingress {
   from_port = 3306

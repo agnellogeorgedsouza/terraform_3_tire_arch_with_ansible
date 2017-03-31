@@ -14,7 +14,7 @@ resource "aws_nat_gateway" "nat-gw" {
 }
 
 resource "aws_route_table" "main-priv-rt" {
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = "${aws_vpc.main-ag.id}"
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.main-gw.id}"

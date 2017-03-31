@@ -1,4 +1,4 @@
-resource "aws_vpc" "main" { 
+resource "aws_vpc" "main-ag" { 
 
 cidr_block = "10.0.0.0/16"
 instance_tenancy = "default"
@@ -6,7 +6,7 @@ enable_dns_support = "true"
 enable_dns_hostnames = "true"
 enable_classiclink = "false"
  tags { 
- Name = "main"
+ Name = "main-ag"
  environment = "dev"
  } 
 
@@ -16,7 +16,7 @@ enable_classiclink = "false"
 #subnets for loadbal , webservers, bastion  
 
 resource "aws_subnet" "main-pub-1" { 
-vpc_id = "${aws_vpc.main.id}"
+vpc_id = "${aws_vpc.main-ag.id}"
 cidr_block = "10.0.1.0/24"
 map_public_ip_on_launch = "true"
 availability_zone = "ap-southeast-1a"
@@ -31,7 +31,7 @@ availability_zone = "ap-southeast-1a"
 # subnet for database 
 # see nat.ft where  we  
 resource "aws_subnet" "main-pri-1" {
-vpc_id = "${aws_vpc.main.id}"
+vpc_id = "${aws_vpc.main-ag.id}"
 cidr_block = "10.0.2.0/24"
 map_public_ip_on_launch = "false"
 availability_zone = "ap-southeast-1b"
@@ -49,7 +49,7 @@ availability_zone = "ap-southeast-1b"
 ## IG
 
 resource "aws_internet_gateway" "main-gw" { 
-vpc_id = "${aws_vpc.main.id}"
+vpc_id = "${aws_vpc.main-ag.id}"
 tags  { 
 Name = "main-gw"
 Enviroment = "dev"
@@ -57,7 +57,7 @@ Enviroment = "dev"
 } 
 
 resource "aws_route_table" "main-pub-rt" { 
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id = "${aws_vpc.main-ag.id}"
   route { 
     cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.main-gw.id}"

@@ -1,7 +1,7 @@
 {
     "version": 3,
     "terraform_version": "0.9.2",
-    "serial": 3,
+    "serial": 5,
     "lineage": "a08a37b6-5dc0-439f-8947-19751a226b95",
     "modules": [
         {
@@ -37,31 +37,31 @@
                         "aws_key_pair.mykeypair",
                         "aws_security_group.allowPort22",
                         "aws_security_group.allowPort3306",
-                        "aws_subnet.main-pub-1"
+                        "aws_subnet.main-pri-1"
                     ],
                     "primary": {
-                        "id": "i-0264aedeb9c6b71e0",
+                        "id": "i-044873aa24e3bf176",
                         "attributes": {
                             "ami": "ami-5057eb33",
-                            "associate_public_ip_address": "true",
-                            "availability_zone": "ap-southeast-1a",
+                            "associate_public_ip_address": "false",
+                            "availability_zone": "ap-southeast-1b",
                             "disable_api_termination": "false",
                             "ebs_block_device.#": "0",
                             "ebs_optimized": "false",
                             "ephemeral_block_device.#": "0",
                             "iam_instance_profile": "",
-                            "id": "i-0264aedeb9c6b71e0",
+                            "id": "i-044873aa24e3bf176",
                             "instance_state": "running",
                             "instance_type": "t2.micro",
                             "ipv6_address_count": "0",
                             "ipv6_addresses.#": "0",
                             "key_name": "mykeypair",
                             "monitoring": "false",
-                            "network_interface_id": "eni-4d5a9436",
-                            "private_dns": "ip-10-0-1-85.ap-southeast-1.compute.internal",
-                            "private_ip": "10.0.1.85",
-                            "public_dns": "ec2-52-221-203-105.ap-southeast-1.compute.amazonaws.com",
-                            "public_ip": "52.221.203.105",
+                            "network_interface_id": "eni-95e213d8",
+                            "private_dns": "ip-10-0-2-18.ap-southeast-1.compute.internal",
+                            "private_ip": "10.0.2.18",
+                            "public_dns": "",
+                            "public_ip": "",
                             "root_block_device.#": "1",
                             "root_block_device.0.delete_on_termination": "true",
                             "root_block_device.0.iops": "0",
@@ -69,7 +69,7 @@
                             "root_block_device.0.volume_type": "standard",
                             "security_groups.#": "0",
                             "source_dest_check": "true",
-                            "subnet_id": "subnet-0ae7c26e",
+                            "subnet_id": "subnet-6cd19f1a",
                             "tags.%": "2",
                             "tags.Environment": "Dev",
                             "tags.Name": "database-001",
@@ -681,26 +681,6 @@
                         "meta": {
                             "schema_version": "1"
                         },
-                        "tainted": false
-                    },
-                    "deposed": [],
-                    "provider": ""
-                },
-                "data.terraform_remote_state.main_remote_state": {
-                    "type": "terraform_remote_state",
-                    "depends_on": [],
-                    "primary": {
-                        "id": "2017-03-31 11:41:01.665098293 +0000 UTC",
-                        "attributes": {
-                            "backend": "s3",
-                            "config.%": "3",
-                            "config.bucket": "remotestate-981-ag",
-                            "config.key": "terraform.tfstate",
-                            "config.region": "ap-southeast-1",
-                            "environment": "default",
-                            "id": "2017-03-31 11:41:01.665098293 +0000 UTC"
-                        },
-                        "meta": {},
                         "tainted": false
                     },
                     "deposed": [],

@@ -16,4 +16,5 @@ type = 	"map"
 default = { 
   ap-southeast-1 = "ami-5057eb33"
  } 
-} 
+}
+
