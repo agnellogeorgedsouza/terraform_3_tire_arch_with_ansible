@@ -35,33 +35,6 @@ resource "aws_instance" "mgthost" {
  subnet_id = "${aws_subnet.main-pub-1.id}"
  vpc_security_group_ids = ["${aws_security_group.allowPort22.id}"]
  key_name = "${aws_key_pair.mykeypair.key_name}"
-
- connection {
-    type = "ssh"
-    user = "ubuntu"
-    private_key = "${file("mykeypair")}"
-    timeout = "2m"
-    agent = false
-}
-
- 
- provisioner "file" {
-   source      = "ansible/wordpress_ansible"
-    destination = "/tmp"
-  }
-
- provisioner "file" {
-    source      = "ansible/script.sh"
-    destination = "/tmp/script.sh"
-  }
-
- provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/script.sh",
-      "sudo /bin/bash /tmp/script.sh",
-    ]
- }
-
  tags {
     Name = "${format("mgthost-%03d", count.index + 1)}"
     servergroup = "controlmachine"
